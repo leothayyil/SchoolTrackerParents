@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bl2">#1161ed</color>
+    <color name="bl1">#4082f5</color>
+    <color name="white">#fff</color>
+    <color name="white_grey">#c9c9c9</color>
+    <color name="background_watermark">#1cf4f4f4</color>
+    <color name="black">#000</color>
+    <color name="gplus">#d34836</color>
+    <color name="red">#a7263e</color>
+    <color name="fbblue">#3b5998</color>
+    <color name="green">#4CAF50</color>
+
+</resources>

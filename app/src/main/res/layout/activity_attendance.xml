@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.user.schooltrackerparents.AttendanceActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATTENDANCE SHEET"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.2sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:background="@color/bl2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="30sp"
+            android:id="@+id/TA_tv_class"
+            android:text="Class : Seven/A"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="30sp"
+            android:id="@+id/TA_tv_name"
+            android:text="Teacher : Anu priya"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.2sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:background="@color/black"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="9sp">
+            <Spinner
+                android:layout_width="100sp"
+                android:layout_height="25sp"
+                android:id="@+id/AA_year_spinner"
+                android:background="@color/white_grey"
+                android:popupBackground="@color/white"
+                tools:ignore="HardcodedText" />
+            <Spinner
+                android:layout_width="100sp"
+                android:layout_height="25sp"
+                android:popupBackground="@color/white"
+                android:background="@color/white_grey"
+                android:id="@+id/AA_month_spinner"
+                android:layout_marginLeft="20sp">
+
+            </Spinner>
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white_grey"
+            android:layout_margin="10sp"
+            app:cardElevation="10sp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycAttendanceTeach"
+                    android:layout_marginTop="25sp">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:text="Submit"
+                    android:id="@+id/TA_btn_submit"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/green"
+                    android:layout_marginTop="10sp"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+
+</LinearLayout>

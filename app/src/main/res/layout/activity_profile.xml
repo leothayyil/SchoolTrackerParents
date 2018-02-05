@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_back"
+    tools:context="com.example.user.schooltrackerparents.ProfileActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:layout_margin="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20sp">
+        <TextView
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/white_grey"
+            android:text="Name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:id="@+id/profile_name"
+            android:textColor="@color/white_grey"
+            android:text=":"/>
+    </LinearLayout><LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="20sp">
+    <TextView
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/white_grey"
+        android:text="Class
+"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/profile_class"
+        android:textColor="@color/white_grey"
+        android:text=":"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20sp">
+        <TextView
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/white_grey"
+            android:text="Username"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:id="@+id/profile_username"
+            android:textColor="@color/white_grey"
+            android:text=":"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20sp">
+        <TextView
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/white_grey"
+            android:text="Phone Number"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:id="@+id/profile_phoneNumber"
+            android:textColor="@color/white_grey"
+            android:text=":"/>
+    </LinearLayout>
+
+</LinearLayout>
