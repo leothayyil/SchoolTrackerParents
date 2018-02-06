@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.user.schooltrackerparents.Retrofit.RetrofitHelper;
 import com.google.gson.JsonElement;
@@ -51,6 +52,7 @@ public class GeneralMsgsActivity extends AppCompatActivity {
                                     String title=jsonObject1.getString("title");
                                     String message=jsonObject1.getString("message");
 
+                                    Toast.makeText(GeneralMsgsActivity.this, "general", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
