@@ -6,15 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.user.schooltrackerparents.Adapter.AttendanceAdapter;
+import com.example.user.schooltrackerparents.Pojo.Pojo_attReport;
+import com.example.user.schooltrackerparents.Retrofit.RetrofitHelper;
 import com.google.gson.JsonElement;
 
 import org.json.JSONArray;
@@ -39,10 +40,11 @@ public class AttendanceActivity extends AppCompatActivity {
     Button submit;
     TextView tv_classa,tv_name,tv_divi;
     Spinner yearSpinner,monthSpinner;
-    String[] year={"2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"};
-    String[] month={"01","02","03","04","05","06","07","08","09","10","11","12"};
+    String[] year={"Year","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"};
+    String[] month={"Month","01","02","03","04","05","06","07","08","09","10","11","12"};
     String yearS,monthS;
     String userIdd;
+    ArrayList <Pojo_attReport>reportList=new ArrayList<>();
 
 
     @Override
@@ -51,7 +53,6 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance);
         recycAttendance=findViewById(R.id.recycAttendanceTeach);
         tv_classa=findViewById(R.id.TA_tv_class);
-        submit=findViewById(R.id.TA_btn_submit);
         tv_name=findViewById(R.id.TA_tv_name);
         yearSpinner=findViewById(R.id.AA_year_spinner);
         monthSpinner=findViewById(R.id.AA_month_spinner);
@@ -99,8 +100,7 @@ public class AttendanceActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                  monthS=monthSpinner.getSelectedItem().toString();
-
-                getAbsenties();
+                 getAbsenties();
             }
 
             @Override
@@ -121,27 +121,33 @@ public class AttendanceActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject=new JSONObject(response.body().toString());
                             String status=jsonObject.getString("status");
+
+
                             JSONArray jsonArray=jsonObject.getJSONArray("attendance");
                             for (int i=0;i<=jsonArray.length();i++){
 
                                 JSONObject jsonObject1=jsonArray.getJSONObject(i);
                                 String date=jsonObject1.getString("date");
                                 String remark=jsonObject1.getString("remark");
-                                Log.e("loggg", "  onResponse: "+remark );
+                                Pojo_attReport pojo=new Pojo_attReport();
+                                pojo.setDate(date);
+                                pojo.setRemark(remark);
+                                reportList.add(pojo);
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        AttendanceAdapter adapter=new AttendanceAdapter(reportList);
+                        recycAttendance.setAdapter(adapter);
                     }
+
 
                     @Override
                     public void onFailure(Call<JsonElement> call, Throwable t) {
-
                     }
                 });
     }
-
     /*
         private class  GetDivision extends AsyncTask{
 

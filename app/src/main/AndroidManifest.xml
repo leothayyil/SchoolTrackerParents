@@ -21,7 +21,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ForgotPassActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".AttendanceActivity"></activity>
+        <activity android:name=".AttendanceActivity" />
+        <activity android:name=".ProgressReportActivity" />
+        <activity android:name=".TeacherMsgsActivity"></activity>
     </application>
 
 </manifest>

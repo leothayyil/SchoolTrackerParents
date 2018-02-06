@@ -1,4 +1,10 @@
-package com.example.user.schooltrackerparents;
+package com.example.user.schooltrackerparents.Retrofit;
+
+import com.example.user.schooltrackerparents.AttendanceActivity;
+import com.example.user.schooltrackerparents.LoginActivity;
+import com.example.user.schooltrackerparents.ProfileActivity;
+import com.example.user.schooltrackerparents.ProgressReportActivity;
+import com.example.user.schooltrackerparents.TeacherMsgsActivity;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,6 +25,14 @@ public class RetrofitHelper {
     }
 
     public RetrofitHelper(AttendanceActivity attendanceActivity) {
+        initRestAdapter();
+    }
+
+    public RetrofitHelper(ProgressReportActivity progressReportActivity) {
+        initRestAdapter();
+    }
+
+    public RetrofitHelper(TeacherMsgsActivity teacherMsgsActivity) {
         initRestAdapter();
     }
 

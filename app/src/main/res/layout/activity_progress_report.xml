@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.user.schooltrackerparents.AttendanceActivity">
+    tools:context="com.example.user.schooltrackerparents.ProgressReportActivity">
 
 
     <LinearLayout
@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ATTENDANCE SHEET"
+            android:text="PROGRESS SHEET"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginTop="5sp"
@@ -33,7 +33,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="20sp"
             android:layout_marginLeft="30sp"
-            android:id="@+id/TA_tv_class"
+            android:id="@+id/PR_tv_class"
             android:text="Class : Seven/A"/>
         <TextView
             android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="20sp"
             android:layout_marginLeft="30sp"
-            android:id="@+id/TA_tv_name"
+            android:id="@+id/PR_tv_name"
             android:text="Teacher : Anu priya"/>
         <View
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             <Spinner
                 android:layout_width="100sp"
                 android:layout_height="25sp"
-                android:id="@+id/AA_year_spinner"
+                android:id="@+id/PR_year_spinner"
                 android:background="@color/white_grey"
                 android:popupBackground="@color/white"
                 tools:ignore="HardcodedText" />
@@ -67,7 +67,7 @@
                 android:layout_height="25sp"
                 android:popupBackground="@color/white"
                 android:background="@color/white_grey"
-                android:id="@+id/AA_month_spinner"
+                android:id="@+id/PR_month_spinner"
                 android:layout_marginLeft="20sp">
 
             </Spinner>
@@ -89,7 +89,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/recycAttendanceTeach"
+                    android:id="@+id/PR_recycler"
                     android:layout_marginTop="25sp">
 
                 </android.support.v7.widget.RecyclerView>

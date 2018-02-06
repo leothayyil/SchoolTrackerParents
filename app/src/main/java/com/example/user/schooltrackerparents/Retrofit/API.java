@@ -1,4 +1,4 @@
-package com.example.user.schooltrackerparents;
+package com.example.user.schooltrackerparents.Retrofit;
 
 import com.google.gson.JsonElement;
 
@@ -23,16 +23,17 @@ public interface API {
 
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
-    Call<JsonElement>getClass(@Field("action") String action);
+    Call<JsonElement>getProgress_page(@Field("action") String action,@Field("user_id") String userId);
 
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
-    Call<JsonElement>getDivision(@Field("action") String action, @Field("user_id") int classa);
+    Call<JsonElement>getExams(@Field("action") String action);
+
 
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
-    Call<JsonElement>getStudeList(@Field("action") String action, @Field("user_id") String user_id, @Field("class") String classa,
-                                  @Field("division") String division);
+    Call<JsonElement>getProgressReport(@Field("action") String action, @Field("user_id") String user_id, @Field("exam") String exam,
+                                  @Field("year") String year);
 
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
@@ -50,5 +51,6 @@ public interface API {
                                  @Field("class") String classa, @Field("division") String division);
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
-    Call<JsonElement>replyDetails(@Field("action") String action, @Field("user_id") String userId, @Field("message_id") String msgId);
+    Call<JsonElement>getMessage(@Field("action") String action, @Field("user_id") String userId,
+                                  @Field("message_id") String msgId);
 }
