@@ -51,6 +51,10 @@ public interface API {
                                  @Field("class") String classa, @Field("division") String division);
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
-    Call<JsonElement>getMessage(@Field("action") String action, @Field("user_id") String userId,
-                                  @Field("message_id") String msgId);
+    Call<JsonElement>getGeneralMsg(@Field("action")String action, @Field("user_id") String userId,
+                                   @Field("class") String classa, @Field("division") String division);
+
+    @FormUrlEncoded
+    @POST("/sample/school_app/api/parents_api.php")
+    Call<JsonElement>getMessages(@Field("action") String action, @Field("user_id") String userId);
 }

@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("user_id",user_id);
                                 editor.apply();
 
-                                Intent intent=new Intent(LoginActivity.this,ProgressReportActivity.class);
+                                Intent intent=new Intent(LoginActivity.this,GeneralMsgsActivity.class);
                                 startActivity(intent);
                             }
                             else {

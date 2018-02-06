@@ -23,7 +23,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".ProgressReportActivity" />
-        <activity android:name=".TeacherMsgsActivity"></activity>
+        <activity android:name=".TeacherMsgsActivity" />
+        <activity android:name=".GeneralMsgsActivity"></activity>
     </application>
 
 </manifest>
