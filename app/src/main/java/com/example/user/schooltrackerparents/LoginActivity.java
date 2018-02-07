@@ -82,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
                             String status=jsonObject.getString("status");
                             String user_id=jsonObject.getString("user_id");
                             String name=jsonObject.getString("student");
-//                            String classa=jsonObject.getString("class");
-//                            String divi=jsonObject.getString("division");
+                            String classa=jsonObject.getString("class");
+                            String divi=jsonObject.getString("division");
 
                             if (status.equals("Success")){
                                 editor.putString("name",name);
