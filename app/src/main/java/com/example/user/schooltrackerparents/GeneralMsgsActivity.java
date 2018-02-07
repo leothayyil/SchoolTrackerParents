@@ -23,8 +23,6 @@ public class GeneralMsgsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_msgs);
-
-
         GeneralMsgs  generalMsgs=new GeneralMsgs();
         generalMsgs.execute();
     }
