@@ -28,7 +28,6 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
                              ArrayList<String> headerArrayList, HashMap<String, ArrayList<String>> childList) {
     }
 
-
     @Override
     public int getGroupCount() {
         return this.titleArray.size();
@@ -36,28 +35,27 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-
-
+        return this.childArray.get(this.titleArray.get(groupPosition)).size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return null;
+        return this.titleArray.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return null;
+        return childPosition;
     }
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return childPosition;
     }
 
     @Override
@@ -67,16 +65,31 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        return null;
+        String headerTitle=(String)getGroup(groupPosition);
+        if (convertView==null){
+            convertView=inflater.inflate(R.layout.gm_header,null);
+        }
+        TextView textHeader=convertView.findViewById(R.id.textViewHeader);
+        textHeader.setText(headerTitle);
+        return convertView;
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        return null;
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+                             View convertView, ViewGroup parent) {
+
+        final String childText=(String)getChild(groupPosition,childPosition);
+        if (convertView==null){
+            convertView=inflater.inflate(R.layout.gm_child,null);
+        }
+        TextView textView=convertView.findViewById(R.id.textViewChild);
+        textView.setText(childText);
+        return convertView;
+
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 }
