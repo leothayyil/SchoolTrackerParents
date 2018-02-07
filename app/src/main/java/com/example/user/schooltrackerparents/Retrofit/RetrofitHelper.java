@@ -41,9 +41,6 @@ public class RetrofitHelper {
         initRestAdapter();
     }
 
-    public RetrofitHelper(GeneralMsgsActivity.GeneralMsgs generalMsgs) {
-        initRestAdapter();
-    }
 
 
     public static API getApi() {
