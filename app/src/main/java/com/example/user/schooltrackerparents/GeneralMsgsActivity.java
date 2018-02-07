@@ -37,7 +37,7 @@ public class GeneralMsgsActivity extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            new RetrofitHelper(GeneralMsgs.this).getApi().getGeneralMsg(action,user_id,classa,division).enqueue(
+            new RetrofitHelper(GeneralMsgsActivity.this).getApi().getGeneralMsg(action,user_id,classa,division).enqueue(
                     new Callback<JsonElement>() {
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
