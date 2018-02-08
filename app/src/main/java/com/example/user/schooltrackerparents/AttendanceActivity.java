@@ -1,6 +1,7 @@
 package com.example.user.schooltrackerparents;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,6 +88,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
                 monthSpinner.setClickable(true);
                 yearS=yearSpinner.getSelectedItem().toString();
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
             }
 
             @Override
@@ -100,6 +102,7 @@ public class AttendanceActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                  monthS=monthSpinner.getSelectedItem().toString();
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
                  getAbsenties();
             }
 

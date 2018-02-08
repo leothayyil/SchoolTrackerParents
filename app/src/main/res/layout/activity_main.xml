@@ -8,26 +8,29 @@
     tools:context="com.example.user.schooltrackerparents.MainActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/login_back"
         tools:context="com.example.user.scooltracker.ParentActivity">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi User"
+            android:textColor="@color/white"
+            android:textSize="30sp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20sp"
+            android:gravity="center"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hi User"
-                android:textColor="@color/white"
-                android:textSize="30sp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_marginTop="20sp">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
@@ -39,6 +42,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:id="@+id/MA_linea_prof"
                         android:layout_gravity="center">
                         <ImageView
                             android:layout_width="wrap_content"
@@ -66,6 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:id="@+id/MA_linea_track"
                         android:layout_gravity="center">
                         <ImageView
                             android:layout_width="wrap_content"
@@ -85,6 +90,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/MA_linea_attendanceRepo"
                 android:layout_marginTop="10sp">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
@@ -119,6 +126,7 @@
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:id="@+id/MA_linea_progressRepo"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_gravity="center">
@@ -140,6 +148,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_marginTop="10sp">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
@@ -149,6 +158,7 @@
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:id="@+id/MA_linea_teacherMsgs"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_gravity="center">
@@ -198,6 +208,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
+                            android:id="@+id/MA_linea_generalMsgs"
                             android:gravity="center"
                             >
                             <ImageView
@@ -226,6 +237,6 @@
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

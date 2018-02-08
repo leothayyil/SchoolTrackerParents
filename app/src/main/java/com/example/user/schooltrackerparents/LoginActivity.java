@@ -82,15 +82,16 @@ public class LoginActivity extends AppCompatActivity {
                             String status=jsonObject.getString("status");
                             String user_id=jsonObject.getString("user_id");
                             String name=jsonObject.getString("student");
-                            String classa=jsonObject.getString("class");
-                            String divi=jsonObject.getString("division");
+                            String single_count=jsonObject.getString("single_count");
+                            String general_count=jsonObject.getString("general_count");
+                            String parent=jsonObject.getString("parent");
 
                             if (status.equals("Success")){
                                 editor.putString("name",name);
                                 editor.putString("user_id",user_id);
                                 editor.apply();
 
-                                Intent intent=new Intent(LoginActivity.this,GeneralMsgsActivity.class);
+                                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                                 startActivity(intent);
                             }
                             else {
