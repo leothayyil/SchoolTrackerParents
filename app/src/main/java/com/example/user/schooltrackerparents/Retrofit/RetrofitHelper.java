@@ -42,7 +42,6 @@ public class RetrofitHelper {
     }
 
 
-
     public static API getApi() {
         return api;
     }
@@ -55,7 +54,6 @@ public class RetrofitHelper {
                 .baseUrl("http://comcubeindia.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         setApi(retrofit.create(API.class));
     }
 }

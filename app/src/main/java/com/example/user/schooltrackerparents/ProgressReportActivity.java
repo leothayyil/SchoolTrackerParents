@@ -3,18 +3,24 @@ package com.example.user.schooltrackerparents;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.user.schooltrackerparents.Adapter.Progress_reportAdapter;
+import com.example.user.schooltrackerparents.Pojo.Pojo_ProgressReport;
 import com.example.user.schooltrackerparents.Retrofit.RetrofitHelper;
 import com.google.gson.JsonElement;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +31,8 @@ public class ProgressReportActivity extends AppCompatActivity {
     TextView name,classa;
     RecyclerView recyclerView;
     Spinner yearSpinner,examSpinner;
+    Progress_reportAdapter adapter;
+    ArrayList<Pojo_ProgressReport>reportList=new ArrayList<>();
 
     String[] year={"Year","2015","2016","2017","2018","2019","2020","2021",
             "2022","2023","2024","2025","2026"};
@@ -54,6 +62,9 @@ public class ProgressReportActivity extends AppCompatActivity {
 
         GetProgrsPage progrsPage=new GetProgrsPage();
         progrsPage.execute();
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
@@ -141,13 +152,19 @@ public class ProgressReportActivity extends AppCompatActivity {
                                 String subject=jsonObject1.getString("subject");
                                 String mark=jsonObject1.getString("mark");
                                 String state=jsonObject1.getString("status");
+                                Pojo_ProgressReport pojo=new Pojo_ProgressReport();
+                                pojo.setMark(mark);
+                                pojo.setStatus(state);
+                                pojo.setSubject(subject);
+                                reportList.add(pojo);
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        adapter=new Progress_reportAdapter(reportList);
+                        recyclerView.setAdapter(adapter);
                     }
-
                     @Override
                     public void onFailure(Call<JsonElement> call, Throwable t) {
 

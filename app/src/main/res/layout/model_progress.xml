@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/progress_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_margin="5sp"
+            android:gravity="center|left"
+            android:text="Subject"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    <View
+        android:layout_width="1sp"
+        android:layout_toRightOf="@+id/progress_subject"
+        android:layout_height="match_parent"
+        android:background="@color/black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:text="mark"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@+id/progress_subject"
+        android:id="@+id/progress_mark"
+        android:layout_margin="5sp"/>
+
+    <View
+        android:layout_width="1sp"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:layout_toLeftOf="@+id/progress_status"
+        android:layout_toRightOf="@id/progress_mark"/>
+
+        <TextView
+            android:id="@+id/progress_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_toRightOf="@+id/progress_mark"
+            android:text="status"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

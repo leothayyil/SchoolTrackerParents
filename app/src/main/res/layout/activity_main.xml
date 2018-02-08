@@ -14,29 +14,42 @@
         android:layout_height="match_parent"
         android:background="@drawable/login_back"
         tools:context="com.example.user.scooltracker.ParentActivity">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearLayout"
+            android:layout_alignStart="@+id/linearLayout"
+            android:layout_alignTop="@+id/linearLayout"
             android:text="Hi User"
             android:textColor="@color/white"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20sp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:foregroundGravity="center"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20sp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3sp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow">
+
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
                     android:layout_height="140sp"
                     app:cardElevation="40sp"
-                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow"
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -58,12 +71,18 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3sp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
                     android:layout_height="140sp"
                     app:cardElevation="40sp"
                     android:layout_gravity="right|center"
-                    android:layout_margin="5sp"
 
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
@@ -86,6 +105,7 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,11 +113,17 @@
                 android:gravity="center"
                 android:id="@+id/MA_linea_attendanceRepo"
                 android:layout_marginTop="10sp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3sp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
                     android:layout_height="140sp"
                     app:cardElevation="40sp"
-                    android:layout_margin="5sp"
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -118,11 +144,17 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3sp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
                     android:layout_height="140sp"
                     app:cardElevation="40sp"
-                    android:layout_margin="5sp"
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -144,17 +176,23 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10sp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3sp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
                     android:layout_height="140sp"
                     app:cardElevation="40sp"
-                    android:layout_margin="5sp"
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -193,11 +231,17 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3sp"
+                    android:layout_margin="5sp"
+                    android:background="@drawable/shadow">
                 <android.support.v7.widget.CardView
                     android:layout_width="140sp"
                     android:layout_height="140sp"
                     app:cardElevation="40sp"
-                    android:layout_margin="5sp"
                     app:cardBackgroundColor="@android:color/transparent">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -235,6 +279,7 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
