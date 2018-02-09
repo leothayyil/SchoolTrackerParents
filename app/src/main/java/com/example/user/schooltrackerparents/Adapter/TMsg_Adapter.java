@@ -1,74 +1,115 @@
 package com.example.user.schooltrackerparents.Adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.schooltrackerparents.ClickListner;
+import com.example.user.schooltrackerparents.GeneralMsgsActivity;
 import com.example.user.schooltrackerparents.Pojo.Pojo_TMsgs;
 import com.example.user.schooltrackerparents.R;
 import com.example.user.schooltrackerparents.TeacherMsgsActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by USER on 06-02-2018.
  */
 
-public class TMsg_Adapter extends RecyclerView.Adapter<TMsg_Adapter.MyViewHolder> {
+public class TMsg_Adapter extends BaseExpandableListAdapter {
+    private Context _context;
+    private List<String> _listDataHeader;
+    private HashMap<String, List<String>> _listDataChild;
 
-    ArrayList<Pojo_TMsgs>arrayList=new ArrayList<>();
-    Context context;
-    ClickListner listner;
-    public TMsg_Adapter(ArrayList<Pojo_TMsgs> tMsgsList, TeacherMsgsActivity teacherMsgsActivity,
-                        ClickListner clickListner) {
-        this.arrayList=tMsgsList;
-        this.context=teacherMsgsActivity;
-        this.listner=clickListner;
-
-    }
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_tmsgs,parent,false);
-
-        return new MyViewHolder(view);
+    public TMsg_Adapter(TeacherMsgsActivity teach_sentBoxActivity, List<String> listDataHeader,
+                      HashMap<String, List<String>> listDataChild) {
+        this._context=teach_sentBoxActivity;
+        this._listDataHeader=listDataHeader;
+        this._listDataChild=listDataChild;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-
-        Pojo_TMsgs pojo=arrayList.get(position);
-
-        holder.date.setText(pojo.getDate());
-        holder.from.setText(pojo.getTeacher());
-        holder.title.setText(pojo.getTitle());
+    public int getGroupCount() {
+        return this._listDataHeader.size();
     }
 
     @Override
-    public int getItemCount() {
-        return arrayList.size();
+    public int getChildrenCount(int groupPosition) {
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title,from,date;
+    @Override
+    public Object getGroup(int groupPosition) {
+        return this._listDataHeader.get(groupPosition);
+    }
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            title=itemView.findViewById(R.id.TM_mod_tit);
-            from=itemView.findViewById(R.id.TM_mod_from);
-            date=itemView.findViewById(R.id.TM_mod_date);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+    @Override
+    public Object getChild(int groupPosition, int childPosition) {
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).get(childPosition);
+    }
 
-                    int pos=getLayoutPosition()+1;
-                    listner.onItemClick(String.valueOf(pos));
-                }
-            });
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+
+        String headerTitle=(String)getGroup(groupPosition);
+        if (convertView==null){
+            LayoutInflater inflater=(LayoutInflater)this._context.getSystemService(Context
+                    .LAYOUT_INFLATER_SERVICE);
+            convertView=inflater.inflate(R.layout.gm_header,null);
         }
+        TextView lblListHeader = (TextView) convertView
+                .findViewById(R.id.textViewHeader);
+
+        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setText(headerTitle);
+
+        return convertView;
+    }
+
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+                             View convertView, ViewGroup parent) {
+
+        String headerTitle=(String)getChild(groupPosition,childPosition);
+        if (convertView==null){
+            LayoutInflater inflater=(LayoutInflater)this._context.getSystemService(Context
+                    .LAYOUT_INFLATER_SERVICE);
+            convertView=inflater.inflate(R.layout.gm_child,null);
+
+        }
+        TextView lblListHeader = (TextView) convertView
+                .findViewById(R.id.textViewChild);
+        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setText(headerTitle);
+
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
     }
 }

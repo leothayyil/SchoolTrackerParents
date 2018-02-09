@@ -1,85 +1,73 @@
 package com.example.user.schooltrackerparents;
 
-import android.support.v7.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
+
 import com.example.user.schooltrackerparents.Adapter.GM_Adapter;
+import com.example.user.schooltrackerparents.Retrofit.RetrofitHelper;
+import com.google.gson.JsonElement;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class GeneralMsgsActivity extends AppCompatActivity {
-
-
+    ExpandableListView expandable;
     GM_Adapter listAdapter;
-    ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    ProgressDialog dialog;
+    List<String> listDataHeader= new ArrayList<String>();
+    List<String> listDataMsg= new ArrayList<String>();
+    HashMap<String, List<String>> listDataChild = new HashMap<String, List<String>>();
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_general_msgs);
+        expandable=findViewById(R.id.gm_expandable);
+        dialog=new ProgressDialog(this);
 
-        expListView = (ExpandableListView) findViewById(R.id.gm_expandable);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.GM_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        prepareListData();
+        dialog.setTitle("Loading Messages...");
+        dialog.show();
 
-        listAdapter = new GM_Adapter(this, listDataHeader, listDataChild);
+        GeneralBox genBox=new GeneralBox();
+        genBox.execute();
 
-        expListView.setAdapter(listAdapter);
+        expandable.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+
+            }
+        });
+
     }
+    private  class  GeneralBox extends AsyncTask {
 
-
-    private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-
-        // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
-
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
-    }
-
-}
-
-//        GeneralMsgs  generalMsgs=new GeneralMsgs();
-//        generalMsgs.execute();
-
-//    }
-    /*
-    public class GeneralMsgs extends AsyncTask{
-
-        String action="general_message";
+         String action="general_message";
         String user_id="1";
         String classa="7";
         String division="7";
@@ -99,12 +87,16 @@ public class GeneralMsgsActivity extends AppCompatActivity {
                                     JSONObject jsonObject1=jsonArray.getJSONObject(i);
                                     String title=jsonObject1.getString("title");
                                     String message=jsonObject1.getString("message");
-                                    titleArray.add(title);
-                                    child.add(message);
-                                    _listDataChild.put(titleArray.get(i),child);
 
-                                    GM_Adapter gmAdapter=new GM_Adapter(titleArray,_listDataChild);
-                                    expandable.setAdapter(gmAdapter);
+                                    listDataHeader.add(title);
+                                    listDataMsg.add(message);
+
+                                    listDataChild.put(listDataHeader.get(i),listDataMsg);
+
+                                    listAdapter = new GM_Adapter(GeneralMsgsActivity.this, listDataHeader,
+                                            listDataChild);
+                                    expandable.setAdapter(listAdapter);
+                                    dialog.dismiss();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -119,7 +111,6 @@ public class GeneralMsgsActivity extends AppCompatActivity {
             );
             return null;
         }
-
     }
-    */
-//}
+
+}

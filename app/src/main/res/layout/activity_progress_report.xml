@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
-    tools:context="com.example.user.schooltrackerparents.ProgressReportActivity">
+    tools:context="com.example.user.schooltrackerparents.ProgressReportActivity"
+    android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:id="@+id/PR_toolbar">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PROGRESS SHEET"
+            android:textSize="20sp"
+            android:background="@color/grey"
+            android:textColor="@color/white"
+            />
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PROGRESS SHEET"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="5sp"
-            android:layout_gravity="center"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1.2sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
-            android:background="@color/bl2"/>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,14 +59,14 @@
             android:layout_margin="9sp">
             <Spinner
                 android:layout_width="100sp"
-                android:layout_height="25sp"
+                android:layout_height="40sp"
                 android:id="@+id/PR_year_spinner"
                 android:background="@drawable/rectangle"
                 android:popupBackground="@color/grey"
                 tools:ignore="HardcodedText" />
             <Spinner
-                android:layout_width="100sp"
-                android:layout_height="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
                 android:popupBackground="@color/grey"
                 android:background="@drawable/rectangle"
                 android:id="@+id/PR_month_spinner"
@@ -79,7 +80,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/white"
-            android:layout_margin="10sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
             app:cardElevation="10sp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/PR_recycler"
-                    android:layout_marginTop="25sp">
+                    android:layout_marginTop="2sp">
 
                 </android.support.v7.widget.RecyclerView>
 

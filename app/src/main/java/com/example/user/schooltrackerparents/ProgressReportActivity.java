@@ -1,11 +1,16 @@
 package com.example.user.schooltrackerparents;
 
+import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,12 +39,20 @@ public class ProgressReportActivity extends AppCompatActivity {
     Spinner yearSpinner,examSpinner;
     Progress_reportAdapter adapter;
     ArrayList<Pojo_ProgressReport>reportList=new ArrayList<>();
+    ProgressDialog dialog;
 
     String[] year={"Year","2015","2016","2017","2018","2019","2020","2021",
             "2022","2023","2024","2025","2026"};
-    String[] month={"Month","01","02","03","04","05","06","07",
-            "08","09","10","11","12"};
+    String[] exams={"Exam code","1","2"};
     String TAG="loggg";
+    String exam,yearSt;
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +63,77 @@ public class ProgressReportActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.PR_recycler);
         yearSpinner=findViewById(R.id.PR_year_spinner);
         examSpinner=findViewById(R.id.PR_month_spinner);
+        dialog=new ProgressDialog(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.PR_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ArrayAdapter adapter=new ArrayAdapter(ProgressReportActivity.this,android.R.layout.
-                simple_spinner_dropdown_item,year);
+                simple_spinner_dropdown_item,year){
+            @Override
+            public boolean isEnabled(int position) {
+                if (position==0){
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+        };
         yearSpinner.setAdapter(adapter);
         ArrayAdapter adapter2=new ArrayAdapter(ProgressReportActivity.this,android.R.layout.
-                simple_spinner_dropdown_item,month);
+                simple_spinner_dropdown_item,exams){
+            @Override
+            public boolean isEnabled(int position) {
+                if (position==0){
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+        };
         examSpinner.setAdapter(adapter2);
 
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+                yearSt=yearSpinner.getSelectedItem().toString();
+                reportList.clear();
+                if (position>0){
+                    getProgressReport();
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        examSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+                exam=examSpinner.getSelectedItem().toString();
+
+                reportList.clear();
+                if (position>0){
+                    getProgressReport();
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         getExams();
-        getProgressReport();
 
         GetProgrsPage progrsPage=new GetProgrsPage();
         progrsPage.execute();
@@ -82,6 +157,13 @@ public class ProgressReportActivity extends AppCompatActivity {
                          JSONObject jsonObject1=jsonArray.getJSONObject(i);
                          String exam_name=jsonObject1.getString("exam");
                          String id=jsonObject1.getString("id");
+                         Pojo_ProgressReport pojo=new Pojo_ProgressReport();
+                         pojo.setSubject(exam_name);
+                         reportList.add(pojo);
+
+
+//                         Object[] objectList=reportList.toArray();
+//                         stringPlace= Arrays.copyOf(objectList,objectList.length,String[].class);
 
                      }
                 } catch (JSONException e) {
@@ -114,8 +196,6 @@ public class ProgressReportActivity extends AppCompatActivity {
                                 String student=jsonObject.getString("student");
                                 String classa=jsonObject.getString("class");
                                 String division=jsonObject.getString("division");
-
-//
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -134,11 +214,11 @@ public class ProgressReportActivity extends AppCompatActivity {
 
     private void getProgressReport() {
         String action="progress_report";
-        String exam="1";
-        String year="2018";
         String userId="1";
+        dialog.setTitle("Getting Report");
+        dialog.show();
 
-        new RetrofitHelper(ProgressReportActivity.this).getApi().getProgressReport(action,userId,exam,year)
+        new RetrofitHelper(ProgressReportActivity.this).getApi().getProgressReport(action,userId,exam,yearSt)
                 .enqueue(new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -164,6 +244,7 @@ public class ProgressReportActivity extends AppCompatActivity {
                         }
                         adapter=new Progress_reportAdapter(reportList);
                         recyclerView.setAdapter(adapter);
+                        dialog.dismiss();
                     }
                     @Override
                     public void onFailure(Call<JsonElement> call, Throwable t) {

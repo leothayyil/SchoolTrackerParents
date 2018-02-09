@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,6 +41,7 @@ public class AttendanceActivity extends AppCompatActivity {
     SharedPreferences preferences;
     RecyclerView recycAttendance;
     Button submit;
+    CardView cardView;
     TextView tv_classa,tv_name,tv_divi;
     Spinner yearSpinner,monthSpinner;
     String[] year={"Year","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"};
@@ -47,6 +50,11 @@ public class AttendanceActivity extends AppCompatActivity {
     String userIdd;
     ArrayList <Pojo_attReport>reportList=new ArrayList<>();
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +66,17 @@ public class AttendanceActivity extends AppCompatActivity {
         yearSpinner=findViewById(R.id.AA_year_spinner);
         monthSpinner=findViewById(R.id.AA_month_spinner);
         recycAttendance.setHasFixedSize(true);
+        cardView=findViewById(R.id.AA_cardView);
         recycAttendance.setLayoutManager(new LinearLayoutManager(this));
         monthSpinner.setClickable(false);
         yearSpinner.setSelected(false);
+        cardView.setVisibility(View.GONE);
+
+        Toolbar toolbar =  findViewById(R.id.AA_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         preferences=getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
         final String restoredTexts=preferences.getString("name","0");
@@ -111,8 +127,6 @@ public class AttendanceActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void getAbsenties() {
@@ -125,7 +139,6 @@ public class AttendanceActivity extends AppCompatActivity {
                             JSONObject jsonObject=new JSONObject(response.body().toString());
                             String status=jsonObject.getString("status");
 
-
                             JSONArray jsonArray=jsonObject.getJSONArray("attendance");
                             for (int i=0;i<=jsonArray.length();i++){
 
@@ -136,6 +149,7 @@ public class AttendanceActivity extends AppCompatActivity {
                                 pojo.setDate(date);
                                 pojo.setRemark(remark);
                                 reportList.add(pojo);
+                                cardView.setVisibility(View.VISIBLE);
                             }
 
                         } catch (JSONException e) {
