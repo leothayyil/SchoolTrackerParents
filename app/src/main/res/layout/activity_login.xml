@@ -67,10 +67,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="example@email.com"
+            android:hint="Username"
             android:layout_marginTop="10sp"
             android:id="@+id/login_userName"
-            android:text="arun"
             android:backgroundTint="@color/background_watermark"
             android:background="@drawable/round_recangle"/>
         <TextView
@@ -86,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
             android:id="@+id/login_password"
-            android:text="arun"
+            android:inputType="textPassword"
             android:backgroundTint="@color/background_watermark"
             android:background="@drawable/round_recangle"/>
 

@@ -22,6 +22,7 @@
             android:layout_alignStart="@+id/linearLayout"
             android:layout_alignTop="@+id/linearLayout"
             android:text="Hi User"
+            android:id="@+id/main_userName"
             android:textColor="@color/white"
             android:textSize="30sp" />
         <LinearLayout
@@ -215,6 +216,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="175"
+                                android:id="@+id/main_tm_count"
                                 android:textColor="@color/white"
                                 android:textSize="8sp"
                                 android:layout_gravity="right|top"
@@ -266,6 +268,7 @@
                                 android:text="5"
                                 android:textColor="@color/white"
                                 android:textSize="8sp"
+                                android:id="@+id/main_gm_count"
                                 android:layout_gravity="right|top"
                                 android:backgroundTint="@color/gplus"
                                 android:background="@drawable/round_recangle"/>

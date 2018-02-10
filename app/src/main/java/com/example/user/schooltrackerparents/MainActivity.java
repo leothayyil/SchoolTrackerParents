@@ -1,14 +1,18 @@
 package com.example.user.schooltrackerparents;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     LinearLayout prof_lin,attRepo,teacherMsgs,genMsgs_linea,progRepo,trackVehicle;
+    TextView studName,tm_count,gm_count;
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         genMsgs_linea=findViewById(R.id.MA_linea_generalMsgs);
         progRepo=findViewById(R.id.MA_linea_progressRepo);
         trackVehicle=findViewById(R.id.MA_linea_track);
+        studName=findViewById(R.id.main_userName);
+        tm_count=findViewById(R.id.main_tm_count);
+        gm_count=findViewById(R.id.main_gm_count);
         prof_lin.setOnClickListener(this);
         attRepo.setOnClickListener(this);
         teacherMsgs.setOnClickListener(this);
@@ -26,6 +33,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progRepo.setOnClickListener(this);
         trackVehicle.setOnClickListener(this);
 
+
+        preferences=(SharedPreferences)getSharedPreferences(LoginActivity.MY_PREFS_NAME,MODE_PRIVATE);
+        String restoredText=preferences.getString(LoginActivity.MY_PREFS_NAME,"0");
+        if (restoredText !=null){
+
+            String name=preferences.getString("parentName","User");
+            String gmCount=preferences.getString("single_count","");
+            String tmCount=preferences.getString("general_count","");
+
+            studName.setText("Hi "+name);
+            gm_count.setText(gmCount);
+            tm_count.setText(tmCount);
+        }
     }
 
 

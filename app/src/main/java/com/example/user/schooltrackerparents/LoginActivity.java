@@ -81,14 +81,21 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject=new JSONObject(response.body().toString());
                             String status=jsonObject.getString("status");
                             String user_id=jsonObject.getString("user_id");
-                            String name=jsonObject.getString("student");
+                            String studName=jsonObject.getString("student");
                             String single_count=jsonObject.getString("single_count");
                             String general_count=jsonObject.getString("general_count");
-                            String parent=jsonObject.getString("parent");
+                            String parentName=jsonObject.getString("parent");
+                            String classa=jsonObject.getString("class");
+                            String division=jsonObject.getString("division");
 
                             if (status.equals("Success")){
-                                editor.putString("name",name);
+                                editor.putString("name",studName);
                                 editor.putString("user_id",user_id);
+                                editor.putString("single_count",single_count);
+                                editor.putString("general_count",general_count);
+                                editor.putString("parentName",parentName);
+                                editor.putString("class",classa);
+                                editor.putString("division",division);
                                 editor.apply();
 
                                 Intent intent=new Intent(LoginActivity.this,MainActivity.class);

@@ -1,5 +1,6 @@
 package com.example.user.schooltrackerparents;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -42,13 +43,14 @@ public class AttendanceActivity extends AppCompatActivity {
     RecyclerView recycAttendance;
     Button submit;
     CardView cardView;
-    TextView tv_classa,tv_name,tv_divi;
+    TextView tv_classa,tv_name;
     Spinner yearSpinner,monthSpinner;
     String[] year={"Year","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"};
     String[] month={"Month","01","02","03","04","05","06","07","08","09","10","11","12"};
     String yearS,monthS;
     String userIdd;
     ArrayList <Pojo_attReport>reportList=new ArrayList<>();
+    ProgressDialog dialog;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -71,6 +73,7 @@ public class AttendanceActivity extends AppCompatActivity {
         monthSpinner.setClickable(false);
         yearSpinner.setSelected(false);
         cardView.setVisibility(View.GONE);
+        dialog=new ProgressDialog(this);
 
         Toolbar toolbar =  findViewById(R.id.AA_toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +82,7 @@ public class AttendanceActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         preferences=getSharedPreferences(MY_PREFS_NAME,MODE_PRIVATE);
-        final String restoredTexts=preferences.getString("name","0");
+        final String restoredTexts=preferences.getString(LoginActivity.MY_PREFS_NAME,"0");
         if (restoredTexts !=null){
             String namee = preferences.getString("name", "0");
             String classa = preferences.getString("class", "0");
@@ -87,8 +90,9 @@ public class AttendanceActivity extends AppCompatActivity {
              userIdd=preferences.getString("user_id","0");
 
             tv_name.setText("Name : "+namee);
-            GetAttendance attendance=new GetAttendance(actionAttendance,userIdd,classa,divi);
-            attendance.execute();
+            tv_classa.setText("Class/Div : "+classa+"/"+divi);
+//            GetAttendance attendance=new GetAttendance(actionAttendance,userIdd,classa,divi);
+//            attendance.execute();
         }
         ArrayAdapter <String>adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,year);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -105,6 +109,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 monthSpinner.setClickable(true);
                 yearS=yearSpinner.getSelectedItem().toString();
                 ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+                getAbsenties();
             }
 
             @Override
@@ -131,6 +136,8 @@ public class AttendanceActivity extends AppCompatActivity {
 
     private void getAbsenties() {
         String actionReport="attendance_report";
+        reportList.clear();
+        dialog.show();
         new RetrofitHelper(AttendanceActivity.this).getApi().getAttReport(actionReport,userIdd,yearS,monthS)
                 .enqueue(new Callback<JsonElement>() {
                     @Override
@@ -150,19 +157,21 @@ public class AttendanceActivity extends AppCompatActivity {
                                 pojo.setRemark(remark);
                                 reportList.add(pojo);
                                 cardView.setVisibility(View.VISIBLE);
+                                dialog.dismiss();
                             }
 
                         } catch (JSONException e) {
+                            dialog.dismiss();
                             e.printStackTrace();
                         }
                         AttendanceAdapter adapter=new AttendanceAdapter(reportList);
                         recycAttendance.setAdapter(adapter);
                     }
 
-
                     @Override
                     public void onFailure(Call<JsonElement> call, Throwable t) {
                     }
+
                 });
     }
     /*
@@ -269,7 +278,6 @@ public class AttendanceActivity extends AppCompatActivity {
                         String division=jsonObject.getString("division");
 
                         tv_classa.setText("Class : "+classa+"/"+division);
-                        tv_divi.setText(classa+"/"+division);
 
 
 

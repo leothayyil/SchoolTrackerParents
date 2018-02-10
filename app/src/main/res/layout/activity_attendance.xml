@@ -35,7 +35,7 @@
             android:layout_marginTop="20sp"
             android:layout_marginLeft="30sp"
             android:id="@+id/TA_tv_class"
-            android:text="Class : Seven/A"/>
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_marginTop="20sp"
             android:layout_marginLeft="30sp"
             android:id="@+id/TA_tv_name"
-            android:text="Teacher : Anu priya"/>
+            />
         <View
             android:layout_width="match_parent"
             android:layout_height="1.2sp"
