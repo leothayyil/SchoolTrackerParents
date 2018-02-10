@@ -12,13 +12,7 @@
         android:id="@+id/TM_mod_tit"
         android:textSize="18sp"
         android:textColor="@color/black"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="from"
-        android:id="@+id/TM_mod_from"
 
-        />
     <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
