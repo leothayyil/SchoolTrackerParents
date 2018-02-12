@@ -24,7 +24,8 @@
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".ProgressReportActivity" />
         <activity android:name=".TeacherMsgsActivity" />
-        <activity android:name=".GeneralMsgsActivity"></activity>
+        <activity android:name=".GeneralMsgsActivity" />
+        <activity android:name=".SentReplyActivity"></activity>
     </application>
 
 </manifest>

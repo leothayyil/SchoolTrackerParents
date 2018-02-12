@@ -69,6 +69,7 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             android:layout_marginTop="10sp"
+            android:text="arun"
             android:id="@+id/login_userName"
             android:backgroundTint="@color/background_watermark"
             android:background="@drawable/round_recangle"/>
@@ -86,6 +87,7 @@
             android:layout_marginTop="10sp"
             android:id="@+id/login_password"
             android:inputType="textPassword"
+            android:text="arun"
             android:backgroundTint="@color/background_watermark"
             android:background="@drawable/round_recangle"/>
 

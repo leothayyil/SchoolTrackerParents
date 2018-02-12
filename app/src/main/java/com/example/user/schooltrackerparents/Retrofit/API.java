@@ -43,12 +43,10 @@ public interface API {
     Call<JsonElement>getAttReport(@Field("action") String action, @Field("user_id") String userId, @Field("year") String year,
                                    @Field("month") String month);
 
-
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
-    Call<JsonElement>sentMessage(@Field("action") String action, @Field("user_id") String userId, @Field("message_type") String msgType,
-                                 @Field("title") String msgTitle, @Field("message") String msgMsg, @Field("student") String student,
-                                 @Field("class") String classa, @Field("division") String division);
+    Call<JsonElement>sentReply(@Field("action") String action, @Field("message_id") String message_id,
+                               @Field("title") String title,@Field("reply") String reply);
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")
     Call<JsonElement>getGeneralMsg(@Field("action")String action, @Field("user_id") String userId,

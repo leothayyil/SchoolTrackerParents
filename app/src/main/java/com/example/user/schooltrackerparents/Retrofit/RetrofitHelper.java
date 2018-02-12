@@ -5,6 +5,7 @@ import com.example.user.schooltrackerparents.GeneralMsgsActivity;
 import com.example.user.schooltrackerparents.LoginActivity;
 import com.example.user.schooltrackerparents.ProfileActivity;
 import com.example.user.schooltrackerparents.ProgressReportActivity;
+import com.example.user.schooltrackerparents.SentReplyActivity;
 import com.example.user.schooltrackerparents.TeacherMsgsActivity;
 
 import retrofit2.Retrofit;
@@ -38,6 +39,10 @@ public class RetrofitHelper {
     }
 
     public RetrofitHelper(GeneralMsgsActivity generalMsgs) {
+        initRestAdapter();
+    }
+
+    public RetrofitHelper(SentReplyActivity sentReplyActivity) {
         initRestAdapter();
     }
 

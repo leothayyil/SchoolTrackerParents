@@ -1,19 +1,23 @@
 package com.example.user.schooltrackerparents.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.schooltrackerparents.ClickListner;
 import com.example.user.schooltrackerparents.GeneralMsgsActivity;
+import com.example.user.schooltrackerparents.MainActivity;
 import com.example.user.schooltrackerparents.Pojo.Pojo_TMsgs;
 import com.example.user.schooltrackerparents.R;
+import com.example.user.schooltrackerparents.SentReplyActivity;
 import com.example.user.schooltrackerparents.TeacherMsgsActivity;
 
 import java.util.ArrayList;
@@ -28,12 +32,14 @@ public class TMsg_Adapter extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader;
     private HashMap<String, List<String>> _listDataChild;
+    private List<String> _listDataId;
 
     public TMsg_Adapter(TeacherMsgsActivity teach_sentBoxActivity, List<String> listDataHeader,
-                      HashMap<String, List<String>> listDataChild) {
+                        HashMap<String, List<String>> listDataChild, List<String> listDataId) {
         this._context=teach_sentBoxActivity;
         this._listDataHeader=listDataHeader;
         this._listDataChild=listDataChild;
+        this._listDataId=listDataId;
     }
 
     @Override
@@ -72,7 +78,7 @@ public class TMsg_Adapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         String headerTitle=(String)getGroup(groupPosition);
         if (convertView==null){
@@ -82,31 +88,38 @@ public class TMsg_Adapter extends BaseExpandableListAdapter {
         }
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.textViewHeader);
-
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
-
         return convertView;
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
+    public View getChildView(int groupPosition, final int childPosition, boolean isLastChild,
                              View convertView, ViewGroup parent) {
 
-        String headerTitle=(String)getChild(groupPosition,childPosition);
+        final String childTitle=(String)getChild(groupPosition,childPosition);
+        final String id=_listDataId.get(childPosition);
         if (convertView==null){
             LayoutInflater inflater=(LayoutInflater)this._context.getSystemService(Context
                     .LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.gm_child,null);
 
         }
-        TextView lblListHeader = (TextView) convertView
+        TextView lblListChild = (TextView) convertView
                 .findViewById(R.id.textViewChild);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
-
+        lblListChild.setTypeface(null, Typeface.BOLD);
+        lblListChild.setText("Message : "+childTitle);
+        lblListChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4=new Intent(_context,SentReplyActivity.class);
+                intent4.putExtra("msg_id",id+"");
+                _context.startActivity(intent4);
+            }
+        });
         return convertView;
     }
+
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

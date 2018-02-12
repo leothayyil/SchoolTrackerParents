@@ -39,6 +39,7 @@ public class TeacherMsgsActivity extends AppCompatActivity {
     ProgressDialog dialog;
     List<String> listDataHeader= new ArrayList<String>();
     List<String> listDataMsg= new ArrayList<String>();
+    List<String> listDataId= new ArrayList<String>();
     HashMap<String, List<String>> listDataChild = new HashMap<String, List<String>>();
 
     @Override
@@ -54,10 +55,13 @@ public class TeacherMsgsActivity extends AppCompatActivity {
         expandable=findViewById(R.id.TM_expandable);
         dialog=new ProgressDialog(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.TM_toolbar);
+        Toolbar toolbar =  findViewById(R.id.TM_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        listDataHeader.clear();
+        listDataChild.clear();
 
         dialog.setTitle("Loading Messages...");
         dialog.show();
@@ -94,11 +98,10 @@ public class TeacherMsgsActivity extends AppCompatActivity {
                                     String teacher=jsonObject1.getString("teacher");
                                     listDataHeader.add(title);
                                     listDataMsg.add(teacher);
-
+                                    listDataId.add(id);
                                     listDataChild.put(listDataHeader.get(i),listDataMsg);
-
                                     listAdapter = new TMsg_Adapter(TeacherMsgsActivity.this, listDataHeader,
-                                            listDataChild);
+                                            listDataChild,listDataId);
                                     expandable.setAdapter(listAdapter);
                                     dialog.dismiss();
 
@@ -117,6 +120,8 @@ public class TeacherMsgsActivity extends AppCompatActivity {
                     });
             return null;
         }}
+
+
 }
   /*
     private class  GetMessage extends AsyncTask{

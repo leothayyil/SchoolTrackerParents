@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent3);
                 break;
             case R.id.MA_linea_track:
-//                Intent intent4=new Intent(MainActivity.this,ProgressReportActivity.class);
-//                startActivity(intent4);
+                Intent intent4=new Intent(MainActivity.this,SentReplyActivity.class);
+                startActivity(intent4);
                 break;
                 case R.id.MA_linea_teacherMsgs:
                 Intent intent5=new Intent(MainActivity.this,TeacherMsgsActivity.class);
