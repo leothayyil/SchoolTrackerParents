@@ -42,6 +42,9 @@ public interface API {
     @POST("/sample/school_app/api/parents_api.php")
     Call<JsonElement>getAttReport(@Field("action") String action, @Field("user_id") String userId, @Field("year") String year,
                                    @Field("month") String month);
+    @FormUrlEncoded
+    @POST("/sample/school_app/api/parents_api.php")
+    Call<JsonElement>getMsgDetails(@Field("action") String action, @Field("user_id") String userId, @Field("message_id") String message_id);
 
     @FormUrlEncoded
     @POST("/sample/school_app/api/parents_api.php")

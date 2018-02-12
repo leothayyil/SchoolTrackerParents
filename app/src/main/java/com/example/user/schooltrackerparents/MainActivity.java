@@ -33,14 +33,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progRepo.setOnClickListener(this);
         trackVehicle.setOnClickListener(this);
 
-
         preferences=(SharedPreferences)getSharedPreferences(LoginActivity.MY_PREFS_NAME,MODE_PRIVATE);
         String restoredText=preferences.getString(LoginActivity.MY_PREFS_NAME,"0");
         if (restoredText !=null){
 
             String name=preferences.getString("parentName","User");
-            String gmCount=preferences.getString("single_count","");
-            String tmCount=preferences.getString("general_count","");
+            String tmCount=preferences.getString("single_count","");
+            String gmCount=preferences.getString("general_count","");
 
             studName.setText("Hi "+name);
             gm_count.setText(gmCount);

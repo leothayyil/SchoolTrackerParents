@@ -3,30 +3,19 @@ package com.example.user.schooltrackerparents.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.user.schooltrackerparents.ClickListner;
-import com.example.user.schooltrackerparents.GeneralMsgsActivity;
-import com.example.user.schooltrackerparents.MainActivity;
-import com.example.user.schooltrackerparents.Pojo.Pojo_TMsgs;
 import com.example.user.schooltrackerparents.R;
 import com.example.user.schooltrackerparents.SentReplyActivity;
 import com.example.user.schooltrackerparents.TeacherMsgsActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by USER on 06-02-2018.
- */
 
 public class TMsg_Adapter extends BaseExpandableListAdapter {
     private Context _context;
@@ -86,7 +75,7 @@ public class TMsg_Adapter extends BaseExpandableListAdapter {
                     .LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.gm_header,null);
         }
-        TextView lblListHeader = (TextView) convertView
+        TextView lblListHeader =  convertView
                 .findViewById(R.id.textViewHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
@@ -103,12 +92,11 @@ public class TMsg_Adapter extends BaseExpandableListAdapter {
             LayoutInflater inflater=(LayoutInflater)this._context.getSystemService(Context
                     .LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.gm_child,null);
-
         }
         TextView lblListChild = (TextView) convertView
                 .findViewById(R.id.textViewChild);
         lblListChild.setTypeface(null, Typeface.BOLD);
-        lblListChild.setText("Message : "+childTitle);
+        lblListChild.setText("Message : " +childTitle);
         lblListChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

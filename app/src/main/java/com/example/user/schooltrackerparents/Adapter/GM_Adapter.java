@@ -22,6 +22,7 @@ import java.util.List;
 public class GM_Adapter extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader;
+    int groupId;
     private HashMap<String, List<String>> _listDataChild;
 
     public GM_Adapter(GeneralMsgsActivity teach_sentBoxActivity, List<String> listDataHeader,
@@ -70,6 +71,7 @@ public class GM_Adapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         String headerTitle=(String)getGroup(groupPosition);
+         groupId= (int) getGroupId(groupPosition);
         if (convertView==null){
             LayoutInflater inflater=(LayoutInflater)this._context.getSystemService(Context
                     .LAYOUT_INFLATER_SERVICE);
@@ -88,7 +90,7 @@ public class GM_Adapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                              View convertView, ViewGroup parent) {
 
-        String headerTitle=(String)getChild(groupPosition,childPosition);
+        String headerTitle=(String)getChild(groupId,childPosition);
         if (convertView==null){
             LayoutInflater inflater=(LayoutInflater)this._context.getSystemService(Context
                     .LAYOUT_INFLATER_SERVICE);
